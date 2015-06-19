@@ -1,0 +1,25 @@
+<?php
+
+/**
+ * Configuration file
+ */
+
+namespace Payname;
+
+
+/**
+ * Configuration class
+ *
+ * @package  Payname
+ */
+class Config {
+
+    const ID = 'R3cWX';
+    //const SECRET = 'fOdhxj0xQB5PfPLH0uMdUeSdBf9345na'; // prod
+    const SECRET = 'knD5z8NHlhTbnOO4umoKRNJAnRpuS343'; // test
+    const HOST = 'http://localhost:1337';
+
+    const OAUTH = false;
+
+}
+

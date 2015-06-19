@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * Configuration file
+ */
+
+namespace Payname;
+
+
+/**
+ * Configuration class
+ *
+ * @package  Payname
+ */
+class Config {
+
+    /**
+     * Shop ID
+     * @var  string
+     */
+    const ID = '';
+
+
+    /**
+     * Secret key
+     * Use the "test" one for sandbox testing
+     * Will be used as auth token on simple auth mode
+     * @var  string
+     */
+    const SECRET = '';
+
+
+    /**
+     * API host
+     * @var  string
+     */
+    const HOST = 'http://api.payname.fr';
+
+
+    /**
+     * Enable OAuth yes/no
+     * false = simple auth mode, automatically handled by \Payname class
+     * true = OAuth only.
+     *     Must use \Payname\Auth\Auth::token()
+     *     then \Payname\Payname::token() to enamble the SDK.
+     * @var boolean
+     */
+    const OAUTH = false;
+
+}

@@ -1,0 +1,170 @@
+<?php
+
+/**
+ * File Crudable
+ */
+
+namespace Payname\Common;
+
+require_once(realpath(dirname(__FILE__) . '/../Payname.class.php'));
+
+
+/**
+ * Template for CRUDable classes
+ */
+abstract class Crudable {
+
+    /**
+     * Object hash
+     * @var string
+     */
+    public $hash = null;
+
+
+    /**
+     * List of object properties to handle
+     * @var array
+     */
+    protected $_fields = array();
+
+
+    /**
+     * Class constructor
+     *
+     * If a hash is provided => _get data
+     * If not => create a new one
+     * Then fill inner fields
+     *
+     * @param  array  $aOptions  Initialisation options
+     */
+    public function __construct($aOptions) {
+        if (isset($aOptions['hash'])) {
+            // hash given => _get crudable data
+            $this->hash = $aOptions['hash'];
+            $aOptions = $this->_get($aOptions['hash']);
+        }
+
+        // load fields
+        foreach ($this->_fields as $field) {
+            if (isset($aOptions[$field])) {
+                $this->{$field} = $aOptions[$field];
+            }
+        }
+    }
+
+
+    /**
+     * Transform current Crudable into an array
+     *
+     * To be used in API methods
+     *
+     * @return  array  Crudable public fields array
+     */
+    protected function _toArray() {
+        $aCrudable = array();
+        foreach ($this->_fields as $field) {
+            $aCrudable[$field] = $this->{$field};
+        }
+        return $aCrudable;
+    }
+
+
+    /**
+     * API Url to use
+     *
+     * @return  string  Base API url to use (after the hostname)
+     */
+    abstract protected function _baseApiUrl();
+
+
+
+    // -------------------------------------------------------------------------
+    // PROTECTED API METHODS
+    // -------------------------------------------------------------------------
+
+    /**
+     * Create a crudable
+     *
+     * POST /:base_api_url
+     *
+     * @return  array  API response
+     */
+    protected function _create() {
+        $aCallOpts = array(
+            'url' => $this->_baseApiUrl()
+            , 'postData' => $this->_toArray()
+        );
+        $aResult = \Payname\Payname::post($aCallOpts);
+        return $aResult['data'];
+    }
+
+
+    /**
+     * Get a crudable
+     *
+     * GET /:base_api_url/:hash
+     *
+     * @param  string  $sHash  Hash of crudable tu get
+     *
+     * @return  array  API response
+     */
+    protected function _get($sHash) {
+        $aCallOpts = array(
+            'url' => $this->_baseApiUrl() . '/' . $sHash
+        );
+        $aResult = \Payname\Payname::get($aCallOpts);
+        return $aResult['data'];
+    }
+
+
+    /**
+     * List crudables
+     *
+     * GET /:base_api_url
+     *
+     * @todo  Implementer pagination
+     *
+     * @return  array  List of users
+     */
+    protected function _list() {
+        $aCallOpts = array(
+            'url' => $this->_baseApiUrl()
+        );
+        $aResult = \Payname\Payname::get($aCallOpts);
+        return $aResult['data'];
+    }
+
+
+    /**
+     * Update a crudable
+     *
+     * PUT /:base_api_url/:hash
+     *
+     * @return  array  API response
+     */
+    protected function _update() {
+        $aCallOpts = array(
+            'url' => $this->_baseApiUrl() . '/' . $this->hash
+            , 'postData' => $this->_toArray()
+        );
+        $aResult = \Payname\Payname::put($aCallOpts);
+        return (isset($aResult['data']) ? $aResult['data'] : null);
+    }
+
+
+    /**
+     * Delete a crudable
+     *
+     * DELETE /:base_api_url/:hash
+     *
+     * @return  array  API response
+     */
+    protected function _delete() {
+        $aCallOpts = array(
+            'url' => $this->_baseApiUrl() . '/' . $this->hash
+        );
+        $aResult = \Payname\Payname::delete($aCallOpts);
+        return (isset($aResult['data']) ? $aResult['data'] : null);
+    }
+}
+

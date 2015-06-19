@@ -1,0 +1,183 @@
+<?php
+
+/**
+ * File Iban
+ */
+
+namespace Payname\User;
+
+require_once(realpath(dirname(__FILE__) . '/../Payname.class.php'));
+use \Payname\Payname;
+
+
+/**
+ * User IBANs
+ *
+ * @package  Payname
+ * @subpackage  User
+ */
+class Iban {
+
+    /**
+     * IBAN hash
+     * @var  string
+     */
+    public $hash = null;
+
+
+    /**
+     * Parent user hash
+     * @var  string
+     */
+    public $user = null;
+
+
+    /**
+     * IBAN code
+     * @var  string
+     */
+    public $iban = null;
+
+
+    /**
+     * Is default IBAN ?
+     * @var  boolean
+     */
+    public $is_default = null;
+
+
+    /**
+     * IBAN title
+     * @var  string
+     */
+    public $title = null;
+
+
+
+    // -------------------------------------------------------------------------
+    // PROTECTED METHODS
+    // -------------------------------------------------------------------------
+
+    /**
+     * Class constructor
+     *
+     * @param  array  $aFields  Field initial values
+     */
+    protected function __construct($aFields = array()) {
+        $this->_load($aFields);
+    }
+
+
+    /**
+     * Load instance fields, erase any existing value
+     *
+     * Used to create/update an instance at once
+     *
+     * @param  array  $aFields  Field values to set
+     */
+    protected function _load($aFields = array()) {
+        foreach ($aFields as $sKey => $mValue) {
+            if (property_exists($this, $sKey)) {
+                $this->{$sKey} = $mValue;
+            }
+        }
+    }
+
+
+
+    // -------------------------------------------------------------------------
+    // PUBLIC METHODS
+    // -------------------------------------------------------------------------
+
+    /**
+     * Create a new IBAN
+     *
+     * @param  array  $aOptions  Initial values
+     *
+     * @throw  \Payname\Exception  On API error
+     *
+     * @return  Iban  IBAN created
+     */
+    public static function create($aOptions) {
+        $sUserHash = $aOptions['user'];
+        $aCallOpts = array(
+            'url' => '/user/' . $sUserHash . '/iban'
+            , 'postData' => $aOptions
+        );
+        $aRes = Payname::post($aCallOpts);
+        $oUser = static::get($sUserHash, $aRes['data']['iban_hash']);
+        return $oUser;
+    }
+
+
+    /**
+     * Get an existing IBAN
+     *
+     * @param  string  $sUserHash  Hash of parent user
+     * @param  string  $sHash      Hash of the IBAN to get
+     *
+     * @throw  \Payname\Exception  On API error
+     *
+     * @return  Iban  Corresponding IBAN
+     */
+    public static function get($sUserHash, $sHash) {
+        $aCallOpts = array(
+            'url' => '/user/' . $sUserHash . '/iban/' . $sHash
+        );
+        $aRes = Payname::get($aCallOpts);
+        $oIban = new Iban($aRes['data']);
+        $oIban->user = $sUserHash;
+        return $oIban;
+    }
+
+
+    /**
+     * Get a list of IBANs
+     *
+     * @param  string  $sUserHash  Hash of parent user
+     *
+     * @todo  Implementer pagination
+     *
+     * @return  array  List of IBANs
+     */
+    public static function getAll($sUserHash) {
+        $aCallOpts = array(
+            'url' => '/user/' . $sUserHash . '/iban'
+        );
+        $aRes = Payname::get($aCallOpts);
+        return $aRes['data'];
+     }
+
+
+    /**
+     * Update current IBAN
+     *
+     * @throw  \Payname\Exception  On API error
+     *
+     * @return  mixed  API response, if any
+     */
+    public function update() {
+        $aCallOpts = array(
+            'url' => '/user/' . $this->user . '/iban/' . $this->hash
+            , 'postData' => get_object_vars($this)
+        );
+        $aResult = Payname::put($aCallOpts);
+        return (isset($aResult['data']) ? $aResult['data'] : null);
+    }
+
+
+    /**
+     * Delete an existing IBAN
+     *
+     * @throw  \Payname\Exception  On API error
+     *
+     * @return  mixed  API response, if any
+     */
+    public function delete() {
+        $aCallOpts = array(
+            'url' => '/user/' . $this->user . '/iban/' . $this->hash
+        );
+        $aResult = Payname::delete($aCallOpts);
+        return (isset($aResult['data']) ? $aResult['data'] : null);
+    }
+}
