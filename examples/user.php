@@ -130,6 +130,18 @@ echo 'Doc instanciated: ' . "\n";
 var_dump($oOldDoc);
 
 
+/* READ FROM USER */
+
+echo '<h2>READ from existing user</h2>';
+try {
+    $oUserDoc = $oOldUser->doc('DWyq6');
+} catch (\Payname\Exception $e) {
+    echo $e . "\n";
+}
+echo 'Doc instanciated: ' . "\n";
+var_dump($oUserDoc);
+
+
 /* LIST */
 
 echo '<h2>LIST</h2>';
@@ -140,6 +152,18 @@ try {
 }
 echo 'Docs trouves : ' . count($aDocs) . "\n"
     . print_r($aDocs, true) . "\n";
+
+
+/* LIST FROM USER */
+
+echo '<h2>LIST from existing user</h2>';
+try {
+    $aUserDocs = $oOldUser->doc();
+} catch (\Payname\Exception $e) {
+    echo $e . "\n";
+}
+echo 'Docs trouves : ' . count($aUserDocs) . "\n"
+    . print_r($aUserDocs, true) . "\n";
 
 
 /* UPDATE */
@@ -197,12 +221,36 @@ echo 'Iban instanciated: ' . "\n";
 var_dump($oOldIban);
 
 
+/* READ FROM USER */
+
+echo '<h2>READ from existing user</h2>';
+try {
+    $oUserIban = $oOldUser->iban('6KJXU');
+} catch (\Payname\Exception $e) {
+    echo $e . "\n";
+}
+echo 'Iban instanciated: ' . "\n";
+var_dump($oUserIban);
+
+
 /* LIST */
 
 echo '<h2>LIST</h2>';
 $aIbans = Iban::getAll('OuAIb');
 echo 'Ibans trouves : ' . count($aIbans) . "\n"
     . print_r($aIbans, true) . "\n";
+
+
+/* LIST FROM USER */
+
+echo '<h2>LIST from existing user</h2>';
+try {
+    $aUserIbans = $oOldUser->iban();
+} catch (\Payname\Exception $e) {
+    echo $e . "\n";
+}
+echo 'IBANs trouves : ' . count($aUserIbans) . "\n"
+    . print_r($aUserIbans, true) . "\n";
 
 
 /* UPDATE */

@@ -9,6 +9,10 @@ namespace Payname\User;
 require_once(realpath(dirname(__FILE__) . '/../Payname.class.php'));
 use \Payname\Payname;
 
+require_once(realpath(dirname(__FILE__) . '/Doc.class.php'));
+use \Payname\User\Doc;
+require_once(realpath(dirname(__FILE__) . '/Iban.class.php'));
+use \Payname\User\Iban;
 
 /**
  * User
@@ -175,5 +179,53 @@ class User {
         return (isset($aResult['data']) ? $aResult['data'] : null);
     }
 
+
+
+    // -------------------------------------------------------------------------
+    // SUB-ENTITIES METHODS
+    // -------------------------------------------------------------------------
+
+    /**
+     * Get a related document, or all documents
+     *
+     * @param  string  $sHash  (Optional) Hash of document to get
+     *                         Default : null <=> get all related docs
+     *
+     * @throw  \Payname\Exception  On API Error
+     *
+     * @return  Doc|array  Requested Doc, or list of all related docs
+     */
+    public function doc($sHash = null) {
+        if ($sHash) {
+            // hash given => get one
+            $mRes = Doc::get($this->hash, $sHash);
+        } else {
+            // no hash => get all
+            $mRes = Doc::getAll($this->hash);
+        }
+        return $mRes;
+    }
+
+
+    /**
+     * Get a related IBAN, or all IBANs
+     *
+     * @param  string  $sHash  (Optional) Hash of IBAN to get
+     *                         Default : null <=> get all related ibans
+     *
+     * @throw  \Payname\Exception  On API Error
+     *
+     * @return  Iban|array  Requested Iban, or list of all related ibans
+     */
+    public function iban($sHash = null) {
+        if ($sHash) {
+            // hash given => get one
+            $mRes = Iban::get($this->hash, $sHash);
+        } else {
+            // no hash => get all
+            $mRes = Iban::getAll($this->hash);
+        }
+        return $mRes;
+    }
 }
 

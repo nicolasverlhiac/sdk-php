@@ -16,6 +16,7 @@ SDK PHP pour l'API Payname
 - [Documentation](#documentation)
 - [Tests](#tests)
 - [Changements](#changements)
+    - [Build 3 - 2015 06 22](#build-3---2015-06-22)
     - [Build 2 - 2015 06 22](#build-2---2015-06-22)
     - [Build 1 - 2015 06 19](#build-1---2015-06-19)
 
@@ -74,6 +75,12 @@ Ils sont en cours d'implémentation.
 
 
 # Changements
+
+## Build 3 - 2015 06 22
+
+* Amélioration exemple de popup avec une vraie popup
+* Ajout de méthodes `User->doc()` and `User->iban()` pour gérer plus facilement les docs/IBANs des utilisateurs
+
 
 ## Build 2 - 2015 06 22
 
