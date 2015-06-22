@@ -47,4 +47,11 @@ class Config {
      */
     const OAUTH = false;
 
+
+    /**
+     * Enable use of cURL for HTTP calls
+     * Requires cURL installed
+     * @var boolean
+     */
+    const USE_CURL = false;
 }

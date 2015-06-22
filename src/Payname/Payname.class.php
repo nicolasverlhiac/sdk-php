@@ -7,16 +7,17 @@
 namespace Payname;
 
 require_once(realpath(dirname(__FILE__) . '/Exception.class.php'));
+use \Payname\Exception;
 
 if (realpath(dirname(__FILE__) . '/Config.class.php') == '') {
     // Config.class.php not found => error
-    throw new \Payname\Exception(
+    throw new Exception(
         'ERROR - Config file not found.'
         . ' Cf. Config.class.php.sample for an example config file.'
     );
 }
 require_once(realpath(dirname(__FILE__) . '/Config.class.php'));
-
+use \Payname\Config;
 
 /**
  * Main SDK class
@@ -39,6 +40,79 @@ class Payname {
 
 
     /**
+     * Call URL with cURL
+     *
+     * @param  string  $sMethod    HTTP Method to use (GET, PUT, etc.)
+     * @param  string  $sUrl       Complete URL to call
+     * @param  array   $aPostData  (Optional) Array of key/values to send via POST
+     *
+     * @throw  \Payname\Exception  On API error
+     *
+     * @return  boolean|string  Raw API response
+     */
+    private static function _call_curl($sMethod, $sUrl, $aPostData = null) {
+
+        $aOpts = array(
+            CURLOPT_URL => $sUrl
+            , CURLOPT_RETURNTRANSFER => true
+            , CURLOPT_CUSTOMREQUEST => $sMethod
+            , CURLOPT_HTTPHEADER => array('Authorization: ' . static::$_token)
+        );
+
+        if (!is_null($aPostData)) {
+            $aOpts[CURLOPT_POSTFIELDS] = http_build_query($aPostData);
+        }
+
+        $oCurl = curl_init();
+        curl_setopt_array($oCurl, $aOpts);
+
+        return curl_exec($oCurl);
+    }
+
+
+    /**
+     * Call URL with 'vanilla' PHP functions
+     *
+     * @param  string  $sMethod    HTTP Method to use (GET, PUT, etc.)
+     * @param  string  $sUrl       Complete URL to call
+     * @param  array   $aPostData  (Optional) Array of key/values to send via POST
+     *
+     * @throw  \Payname\Exception  On API error
+     *
+     * @return  boolean|string  Raw API response
+     */
+    private static function _call_vanilla($sMethod, $sUrl, $aPostData = null) {
+
+        $aCtxOpts = array(
+            'http' => array(
+                'method' => $sMethod
+                , 'ignore_errors' => true
+                , 'header' => 'Authorization: ' . static::token()
+                    . "\n" . 'Content-type: application/json'
+            )
+        );
+
+        if (!is_null($aPostData)) {
+            $aCtxOpts['http']['content'] = json_encode($aPostData);
+        }
+
+        $oFile = fopen($sUrl, 'rb', false, stream_context_create($aCtxOpts));
+        if (!$oFile) {
+            $mRes = false;
+        } else {
+            $mRes = stream_get_contents($oFile);
+        }
+
+        if ($mRes === false) {
+            throw new Exception(
+                $sMethod . ' ' . $sUrl . ' ERROR: ' . $php_errormsg
+            );
+        }
+        return $mRes;
+    }
+
+
+    /**
      * Call URL
      *
      * @param  array  $aOptions  Call options
@@ -49,25 +123,30 @@ class Payname {
      */
     private static function _call($aOptions) {
 
-        if (!\Payname\Config::OAUTH) {
-            static::token(\Payname\Config::SECRET);
+        if (!Config::OAUTH) {
+            static::token(Config::SECRET);
         }
 
-        $aOpts = array(
-            CURLOPT_URL => \Payname\Config::HOST . $aOptions['url']
-            , CURLOPT_RETURNTRANSFER => true
-            , CURLOPT_CUSTOMREQUEST => $aOptions['method']
-            , CURLOPT_HTTPHEADER => array('Authorization: ' . static::$_token)
-        );
 
-        if (isset($aOptions['postData'])) {
-            $aOpts[CURLOPT_POSTFIELDS] = http_build_query($aOptions['postData']);
+        /* PHP Vanilla version */
+        $sMethod = $aOptions['method'];
+        $sUrl = Config::HOST . $aOptions['url'];
+        $aPostData = (isset($aOptions['postData']))
+            ? $aOptions['postData']
+            : null;
+
+        if (Config::USE_CURL) {
+            $mRes = static::_call_curl($sMethod, $sUrl, $aPostData);
+        } else {
+            $mRes = static::_call_vanilla($sMethod, $sUrl, $aPostData);
         }
+        $aResult = json_decode($mRes, true);
 
-        $oCurl = curl_init();
-        curl_setopt_array($oCurl, $aOpts);
-
-        $aResult = json_decode(curl_exec($oCurl), true);
+        if ($aResult === null) {
+            throw new Exception(
+                $sMethod . ' ' . $sUrl . ' did not send valid JSON: ' . $mRes
+            );
+        }
 
         if (!$aResult['success']) {
             throw new Exception(

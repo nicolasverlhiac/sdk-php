@@ -16,13 +16,15 @@ SDK PHP pour l'API Payname
 - [Documentation](#documentation)
 - [Tests](#tests)
 - [Changements](#changements)
+    - [Build 2 - 2015 06 22](#build-2---2015-06-22)
     - [Build 1 - 2015 06 19](#build-1---2015-06-19)
 
 <!-- markdown-toc end -->
 
 # Prérequis
 
-PHP 5.3 ou ultérieur, avec [cURL](http://php.net/manual/en/book.curl.php) installé.
+* PHP 5.3 ou ultérieur
+* Optionnel : [cURL](http://php.net/manual/en/book.curl.php) installé.
 
 # Installation
 
@@ -46,6 +48,8 @@ Pour installer le SDK, télécharger ce dossier et le copier dans votre projet, 
 * Utiliser la clé secrète de test pour passer le SDK en mode test.
 * Si le type d'authentification du compte est paramétré sur "OAuth et simple", le SDK gère automatiquement l'authentification.
   Sinon, l"utilisation de `Auth::token()` et `Payname::token()` est indispensable.
+* Par defaut, le SDK utilise les fonctions de base de PHP pour les appels HTTP.
+  Pour utiliser cURL à la place, setter `Config::USE_CURL` a `true`. 
 
 
 # Exemples
@@ -70,6 +74,12 @@ Ils sont en cours d'implémentation.
 
 
 # Changements
+
+## Build 2 - 2015 06 22
+
+* Ajout support appels HTTP sans cURL pour les environnements n'ayant pas l'extention
+* Ajout option dans `Config` pour pouvoir activer/désactiver le support de cURL à la demande
+
 
 ## Build 1 - 2015 06 19
 

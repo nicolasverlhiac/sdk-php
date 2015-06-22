@@ -15,13 +15,15 @@ SDK PHP for Payname API
 - [Documentation](#documentation)
 - [Tests](#tests)
 - [Changelog](#changelog)
+    - [Build 2 - 2015 06 22](#build-2---2015-06-22)
     - [Build 1 - 2015 06 19](#build-1---2015-06-19)
 
 <!-- markdown-toc end -->
 
 # Prerequisites
 
-PHP 5.3 or higher with [cURL](http://php.net/manual/en/book.curl.php) installed.
+* PHP 5.3 or higher
+* Opional: [cURL](http://php.net/manual/en/book.curl.php) installed.
 
 # Installation
 
@@ -45,6 +47,8 @@ Composer integration will come "soon".
 * Use the test secret key to switch the SDK to test mode.
 * If account is set to "OAuth and simple", SDK will automatically auth on every request.
   Otherwise, use of `Auth::token()` and `Payname::token()` is required.
+* By default, the SDK will use standard PHP functions for HTTP calls.
+  To use cURL instead, set `Config::USE_CURL` to `true`
 
 
 # Examples
@@ -69,6 +73,12 @@ For now, work is still in progress.
 
 
 # Changelog
+
+## Build 2 - 2015 06 22
+
+* Added support of HTTP call without use of cURL, for environment which have not the extension installed.
+* Added an option in `Config` to enable/disable cURL in HTTP calls
+
 
 ## Build 1 - 2015 06 19
 

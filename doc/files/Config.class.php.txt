@@ -14,12 +14,45 @@ namespace Payname;
  */
 class Config {
 
+    /**
+     * Shop ID
+     * @var  string
+     */
     const ID = 'R3cWX';
-    //const SECRET = 'fOdhxj0xQB5PfPLH0uMdUeSdBf9345na'; // prod
-    const SECRET = 'knD5z8NHlhTbnOO4umoKRNJAnRpuS343'; // test
+
+
+    /**
+     * Secret key
+     * Use the "test" one for sandbox testing
+     * Will be used as auth token on simple auth mode
+     * @var  string
+     */
+    const SECRET = 'knD5z8NHlhTbnOO4umoKRNJAnRpuS343';
+
+
+    /**
+     * API host
+     * @var  string
+     */
     const HOST = 'http://localhost:1337';
 
+
+    /**
+     * Enable OAuth yes/no
+     * false = simple auth mode, automatically handled by \Payname class
+     * true = OAuth only.
+     *     Must use \Payname\Auth\Auth::token()
+     *     then \Payname\Payname::token() to enamble the SDK.
+     * @var boolean
+     */
     const OAUTH = false;
 
+
+    /**
+     * Enable use of cURL for HTTP calls
+     * Requires cURL installed
+     * @var boolean
+     */
+    const USE_CURL = true;
 }
 

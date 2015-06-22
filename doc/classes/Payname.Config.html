@@ -144,28 +144,28 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1355832544"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1252448914"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1355832544" class="accordion-body collapse in">
+            <div id="namespace-1252448914" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-648857944"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1803081477"></a>
                                 <a href="../namespaces/Payname.html" style="margin-left: 30px; padding-left: 0">Payname</a>
             </div>
-            <div id="namespace-648857944" class="accordion-body collapse ">
+            <div id="namespace-1803081477" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1993633151"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1993412761"></a>
                                 <a href="../namespaces/Payname.Auth.html" style="margin-left: 30px; padding-left: 0">Auth</a>
             </div>
-            <div id="namespace-1993633151" class="accordion-body collapse ">
+            <div id="namespace-1993412761" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -180,10 +180,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1987634159"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1622134136"></a>
                                 <a href="../namespaces/Payname.Popup.html" style="margin-left: 30px; padding-left: 0">Popup</a>
             </div>
-            <div id="namespace-1987634159" class="accordion-body collapse ">
+            <div id="namespace-1622134136" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -198,10 +198,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1838958588"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1165371303"></a>
                                 <a href="../namespaces/Payname.User.html" style="margin-left: 30px; padding-left: 0">User</a>
             </div>
-            <div id="namespace-1838958588" class="accordion-body collapse ">
+            <div id="namespace-1165371303" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -275,6 +275,7 @@
                                                                     <a href="../classes/Payname.Config.html#constant_SECRET" class="">SECRET</a><br />
                                                                     <a href="../classes/Payname.Config.html#constant_HOST" class="">HOST</a><br />
                                                                     <a href="../classes/Payname.Config.html#constant_OAUTH" class="">OAUTH</a><br />
+                                                                    <a href="../classes/Payname.Config.html#constant_USE_CURL" class="">USE_CURL</a><br />
                                                             </section>
                         </section>
                         <section class="row-fluid protected">
@@ -340,7 +341,7 @@
             <article id="constant_ID" class="constant">
                 <h3 class="">ID</h3>
                 <pre class="signature">ID</pre>
-                <p><em></em></p>
+                <p><em>Shop ID</em></p>
                 
             </article>
         </div>
@@ -361,7 +362,9 @@
             <article id="constant_SECRET" class="constant">
                 <h3 class="">SECRET</h3>
                 <pre class="signature">SECRET</pre>
-                <p><em></em></p>
+                <p><em>Secret key
+Use the &quot;test&quot; one for sandbox testing
+Will be used as auth token on simple auth mode</em></p>
                 
             </article>
         </div>
@@ -382,7 +385,7 @@
             <article id="constant_HOST" class="constant">
                 <h3 class="">HOST</h3>
                 <pre class="signature">HOST</pre>
-                <p><em></em></p>
+                <p><em>API host</em></p>
                 
             </article>
         </div>
@@ -403,7 +406,32 @@
             <article id="constant_OAUTH" class="constant">
                 <h3 class="">OAUTH</h3>
                 <pre class="signature">OAUTH</pre>
-                <p><em></em></p>
+                <p><em>Enable OAuth yes/no
+false = simple auth mode, automatically handled by \Payname class
+true = OAuth only.</em></p>
+                <p>Must use \Payname\Auth\Auth::token()
+then \Payname\Payname::token() to enamble the SDK.</p>
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_USE_CURL" name="constant_USE_CURL" class="anchor"></a>
+            <article id="constant_USE_CURL" class="constant">
+                <h3 class="">USE_CURL</h3>
+                <pre class="signature">USE_CURL</pre>
+                <p><em>Enable use of cURL for HTTP calls
+Requires cURL installed</em></p>
                 
             </article>
         </div>
@@ -470,7 +498,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on June 19th, 2015 at 16:16.
+                    on June 22nd, 2015 at 14:40.
                 </section>
             </section>
         </section>
