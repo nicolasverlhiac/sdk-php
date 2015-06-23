@@ -34,7 +34,7 @@ class Config {
      * API host
      * @var  string
      */
-    const HOST = 'http://api.payname.fr';
+    const HOST = 'https://api.payname.fr/v2';
 
 
     /**
