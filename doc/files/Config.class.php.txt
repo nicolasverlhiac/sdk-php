@@ -27,14 +27,15 @@ class Config {
      * Will be used as auth token on simple auth mode
      * @var  string
      */
-    const SECRET = 'knD5z8NHlhTbnOO4umoKRNJAnRpuS343';
-
+    //const SECRET = 'WD16NlQEKTUX5EEbFFzQPUZpQxIkKEz3'; // DEV
+    const SECRET = '6L8rkANaLtecpu0oX7dmxYwG6cenDdnr'; // PROD
 
     /**
      * API host
      * @var  string
      */
-    const HOST = 'http://localhost:1337';
+    const HOST = 'http://localhost:1337'; // DEV
+    // const HOST = 'https://api.payname.fr/v2'; // PROD
 
 
     /**
@@ -53,6 +54,6 @@ class Config {
      * Requires cURL installed
      * @var boolean
      */
-    const USE_CURL = true;
+    const USE_CURL = false;
 }
 

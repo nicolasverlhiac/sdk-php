@@ -57,6 +57,41 @@ class User {
     public $last_name = null;
 
 
+    /**
+     * User address
+     * @var  string
+     */
+    public $address = null;
+
+
+    /**
+     * User city
+     * @var  string
+     */
+    public $city = null;
+
+
+    /**
+     * User postal_code
+     * @var  string
+     */
+    public $postal_code = null;
+
+
+    /**
+     * User birthdate
+     * @var  date
+     */
+    public $birthdate = null;
+
+
+    /**
+     * User secu
+     * @var  string
+     */
+    public $secu = null;
+
+
 
     // -------------------------------------------------------------------------
     // PROTECTED METHODS

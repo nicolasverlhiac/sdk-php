@@ -16,6 +16,7 @@ SDK PHP pour l'API Payname
 - [Documentation](#documentation)
 - [Tests](#tests)
 - [Changements](#changements)
+    - [Build 4 - 2015 08 11](#build-4---2015-08-11)
     - [Build 3 - 2015 06 22](#build-3---2015-06-22)
     - [Build 2 - 2015 06 22](#build-2---2015-06-22)
     - [Build 1 - 2015 06 19](#build-1---2015-06-19)
@@ -75,6 +76,14 @@ Ils sont en cours d'implémentation.
 
 
 # Changements
+
+## Build 4 - 2015 08 11
+
+* Ajout support paiement par carte et tokens de carte
+  * Ajout classes `Payment` et `Card`
+* Ajout exemple de paiement par carte `examples/payment_card.php`
+* Ajout exemple de paiement par token de carte `examples/payment_token.php`
+
 
 ## Build 3 - 2015 06 22
 
