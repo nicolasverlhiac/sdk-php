@@ -26,10 +26,10 @@ class Payment {
 
 
     /**
-     * Payment order_id, external ID defined by customer
+     * Payment order, external ID defined by customer
      * @var  string
      */
-    public $order_id = '';
+    public $order = '';
 
 
     /**
@@ -210,7 +210,7 @@ class Payment {
             , 'postData' => array(
                 'action' => 'finalyze_3ds'
                 , 'datas' => array(
-                    'order_id' => $this->order_id
+                    'order_id' => $this->order
                     , 'transaction' => $trs
                     , 'pares' => $pares
                 )
@@ -234,7 +234,7 @@ class Payment {
             , 'postData' => array(
                 'action' => 'confirm'
                 , 'datas' => array(
-                    'order_id' => $this->order_id
+                    'order_id' => $this->order
                 )
             )
         );

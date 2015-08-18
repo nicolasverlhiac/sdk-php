@@ -1,10 +1,14 @@
 <html>
 <head>
-<meta charset="utf-8"/>
-<title>SDK TEST - PAYMENT</title>
+  <meta charset="utf-8"/>
+  <title>Example > Payment with token - Payname SDK</title>
+  <style media="screen" type="text/css">
+body {
+    font-family: monospace;
+}
+  </style>
 </head>
 <body>
-<pre>
 <h1>PAYMENT WITH TOKEN</h1>
 <?php
 
@@ -14,7 +18,37 @@ require_once('../src/Payname/Card/Card.class.php');
 use \Payname\Payment\Payment;
 use \Payname\Card\Card;
 
-$order_id = 'TTOKN';
+
+/**
+ * Helper function to pretty print an object into HTML (ul/li)
+ *
+ * @param  miwed  $mData  Object|array|scalar to pretty print
+ *
+ * @param  string  Corresponding HTML code
+ */
+function _toHTML($mData) {
+    $shtml = '';
+
+    if (is_object($mData)) {
+        $mData = get_object_vars($mData);
+    }
+    if (is_array($mData)) {
+        $sHTML = '<ul>';
+        foreach ($mData as $sKey => $sValue) {
+            $sHTML .= '<li>'
+                . '<strong>' . $sKey . ':</strong>&nbsp;'
+                . _toHTML($sValue)
+                . '</li>';
+        }
+        $sHTML .= '</ul>';
+    } else {
+        $sHTML = $mData;
+    }
+    return $sHTML;
+}
+
+
+$order = 'TTOKN';
 $amount = '10';
 
 
@@ -53,7 +87,7 @@ if (!isset($_POST['PaRes'])) {
                 , 'datas' => array(
                     'token' => $sToken
                     , 'amount' => $amount
-                    , 'order_id' => $order_id
+                    , 'order_id' => $order
                 )
             )
         );
@@ -61,7 +95,7 @@ if (!isset($_POST['PaRes'])) {
         echo $e . "\n";
     }
     echo 'Payment created: ' . "\n";
-    var_dump($oNewPayment);
+    echo _toHTML($oNewPayment);
 }
 
 
@@ -75,21 +109,21 @@ if (
 ?>
 <h2>Validation 3DS</h2>
 <form name="test3DS"
-	  action="<?php echo $oNewPayment->test_3DS['url']; ?>"
-	  method="POST"
-	  >
+      action="<?php echo $oNewPayment->test_3DS['url']; ?>"
+      method="POST"
+      >
   <input type="hidden"
-		 name="PaReq"
-		 value="<?php echo $oNewPayment->test_3DS['pareq']?>"
-		 >
+         name="PaReq"
+         value="<?php echo $oNewPayment->test_3DS['pareq']?>"
+         >
   <input type="hidden"
-		 name="MD"
-		 value="<?php echo $oNewPayment->test_3DS['transaction']; ?>"
-		 >
+         name="MD"
+         value="<?php echo $oNewPayment->test_3DS['transaction']; ?>"
+         >
   <input type="hidden"
-		 name="TermUrl"
-		 value="http://<?php echo $_SERVER['SERVER_NAME']; ?>/examples/payment_token.php"
-		 >
+         name="TermUrl"
+         value="http://<?php echo $_SERVER['SERVER_NAME']; ?>/examples/payment_token.php"
+         >
   <input type="submit" value="Test 3DS"><br>
 </form>
 
@@ -97,7 +131,7 @@ if (
 endif;
 
 
-$oPayment = Payment::get($order_id);
+$oPayment = Payment::get($order);
 
 
 /* 4. After 3DS - Confirmation */
@@ -107,7 +141,7 @@ if (isset($_POST['PaRes']) and $oPayment->status == 'W_3DS') {
     $oPayment->finalize_3DS($_POST['PaRes'], $_POST['MD']);
 
     echo '<p> Result: </p>';
-    var_dump($oPayment = Payment::get($order_id));
+    echo _toHTML($oPayment = Payment::get($order));
 }
 
 
@@ -116,16 +150,10 @@ if (isset($_POST['PaRes']) and $oPayment->status == 'W_3DS') {
 if ($oPayment->status == 'C_WAITING') {
     echo '<h2>Payment confirmation</h2>';
     $oPayment->confirm();
-    
+
     echo '<p> Result: </p>';
-    var_dump($oPayment = Payment::get($order_id));
+    echo _toHTML($oPayment = Payment::get($order));
 }
-
-
-/* 6. END */
-
-echo '<h2>Finally...</h2>';
-var_dump($oPayment);
 ?>
 
 </pre>
