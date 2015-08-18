@@ -143,7 +143,7 @@ class User {
             , 'postData' => $aOptions
         );
         $aRes = Payname::post($aCallOpts);
-        $oUser = static::get($aRes['data']);
+        $oUser = static::get($aRes['data']['hash']);
         return $oUser;
     }
 
