@@ -24,7 +24,7 @@ SDK PHP for Payname API
 
 # Prerequisites
 
-* PHP 5.3 or higher
+* PHP 5.4 or higher
 * Opional: [cURL](http://php.net/manual/en/book.curl.php) installed.
 
 # Installation
