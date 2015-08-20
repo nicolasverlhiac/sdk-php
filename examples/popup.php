@@ -50,9 +50,15 @@ require_once('../src/Payname/Popup/Popup.class.php');
 
 $sUrl='';
 try {
-    $sUrl = \Payname\Popup\Popup::create(0.99);
+    $sUrl = \Payname\Popup\Popup::create(
+        array(
+            'amount' => 0.99
+            , 'callback_ok' => 'http://sdk-php.local/examples/popup.php?ok=true'
+            , 'callback_cancel' => 'http://sdk-php.local/examples/popup.php?ok=false'
+        )
+    );
 } catch (\Payname\Exception $e) {
-    var_dump($e);
+    //var_dump($e);
 }
 
 ?>

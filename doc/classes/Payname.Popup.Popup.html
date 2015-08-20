@@ -144,28 +144,28 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1671963540"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-2029757444"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1671963540" class="accordion-body collapse in">
+            <div id="namespace-2029757444" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-971196644"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1843697451"></a>
                                 <a href="../namespaces/Payname.html" style="margin-left: 30px; padding-left: 0">Payname</a>
             </div>
-            <div id="namespace-971196644" class="accordion-body collapse ">
+            <div id="namespace-1843697451" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1206967467"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1638227182"></a>
                                 <a href="../namespaces/Payname.Auth.html" style="margin-left: 30px; padding-left: 0">Auth</a>
             </div>
-            <div id="namespace-1206967467" class="accordion-body collapse ">
+            <div id="namespace-1638227182" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -180,10 +180,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1881405326"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1247443706"></a>
                                 <a href="../namespaces/Payname.Card.html" style="margin-left: 30px; padding-left: 0">Card</a>
             </div>
-            <div id="namespace-1881405326" class="accordion-body collapse ">
+            <div id="namespace-1247443706" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -198,10 +198,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-189619439"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-470902982"></a>
                                 <a href="../namespaces/Payname.Payment.html" style="margin-left: 30px; padding-left: 0">Payment</a>
             </div>
-            <div id="namespace-189619439" class="accordion-body collapse ">
+            <div id="namespace-470902982" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -218,10 +218,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-421990807"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2130401773"></a>
                                 <a href="../namespaces/Payname.Popup.html" style="margin-left: 30px; padding-left: 0">Popup</a>
             </div>
-            <div id="namespace-421990807" class="accordion-body collapse ">
+            <div id="namespace-2130401773" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -236,10 +236,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1116621026"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-546547865"></a>
                                 <a href="../namespaces/Payname.User.html" style="margin-left: 30px; padding-left: 0">User</a>
             </div>
-            <div id="namespace-1116621026" class="accordion-body collapse ">
+            <div id="namespace-546547865" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -375,16 +375,23 @@
             <article class="method">
                 <h3 class="public ">create()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">create(float  <span class="argument">$fAmount</span>) : string</pre>
+                <pre class="signature" style="margin-right: 54px;">create(array  <span class="argument">$aOptions</span>) : string</pre>
                 <p><em>Create a popup for current shop</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>float</td>
-                                <td>$fAmount </td>
-                                <td><p>Amount to pay</p></td>
+                                <td>array</td>
+                                <td>$aOptions </td>
+                                <td><p>Creation options:</p>
+<ul>
+<li><code>amount</code>           (float)   <em>Required.</em> Amount to pay in the popup</li>
+<li><code>callback_ok</code>      (string)  <em>Optional.</em> Once payment is finished,
+redirect to this URL instead of closing the popup</li>
+<li><code>callback_cancel</code>  (string)  <em>Optional.</em> If user cancels (button),
+redirect to this URL instead of closing the popup</li>
+</ul></td>
                             </tr>
                                             </table>
                 
@@ -462,7 +469,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 20th, 2015 at 18:56.
+                    on August 20th, 2015 at 21:31.
                 </section>
             </section>
         </section>

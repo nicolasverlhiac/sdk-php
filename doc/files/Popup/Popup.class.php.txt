@@ -19,19 +19,22 @@ class Popup {
     /**
      * Create a popup for current shop
      *
-     * @param  float  $fAmount  Amount to pay
+     * @param  array  $aOptions  Creation options:
+     * - `amount`           (float)   *Required.* Amount to pay in the popup
+     * - `callback_ok`      (string)  *Optional.* Once payment is finished,
+     *   redirect to this URL instead of closing the popup
+     * - `callback_cancel`  (string)  *Optional.* If user cancels (button),
+     *   redirect to this URL instead of closing the popup
      *
      * @throw  \Payname\Exception  On API error
      *
      * @return  string  URL to open in popup
      */
-    public static function create($fAmount) {
+    public static function create($aOptions) {
         $aRes = \Payname\Payname::post(
             array(
                 'url' => '/popup'
-                , 'postData' => array(
-                    'amount' => 0.99
-                )
+                , 'postData' => $aOptions
             )
         );
         return $aRes['data']['url'];
