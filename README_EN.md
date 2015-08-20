@@ -15,6 +15,7 @@ SDK PHP for Payname API
 - [Documentation](#documentation)
 - [Tests](#tests)
 - [Changelog](#changelog)
+    - [Build 5 - 2015 08 20](#build-5---2015-08-20)
     - [Build 4 - 2015 08 11](#build-4---2015-08-11)
     - [Build 3 - 2015 06 22](#build-3---2015-06-22)
     - [Build 2 - 2015 06 22](#build-2---2015-06-22)
@@ -75,6 +76,14 @@ For now, work is still in progress.
 
 
 # Changelog
+
+## Build 5 - 2015 08 20
+
+* Update `Payment` to support new API functionalities:
+  * Added support to new payment structure
+  * Added new classes `Debit` and Credit
+* Added CRUD examples for `Payment`, `Debit`, `Credit` in `examples/*_crud.php`
+
 
 ## Build 4 - 2015 08 11
 

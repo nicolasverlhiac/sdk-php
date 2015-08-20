@@ -67,17 +67,17 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">6</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">8</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="../reports/deprecated.html">
-                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">6</span>
                                 </a>
                             </li>
                         </ul>
@@ -97,7 +97,8 @@
         <div class="span2 sidebar">
             <ul class="side-nav nav nav-list">
                 <li class="nav-header">Navigation</li>
-                            </ul>
+                                                            <li><a href="#Payment/Payment.class.php"><i class="icon-file"></i> Payment/Payment.class.php</a></li>
+                                                                                                                                                                                                                                                                                                                                                            </ul>
         </div>
 
         <div class="span10 offset2">
@@ -107,8 +108,50 @@
             </ul>
 
             <div id="marker-accordion">
-                                    <div class="alert alert-info">No deprecated elements have been found in this project.</div>
-                                    </table>
+                                                                            <a name="Payment/Payment.class.php" id="Payment/Payment.class.php"></a>
+                    <h3>
+                        <i class="icon-file"></i>
+                        Payment/Payment.class.php
+                        <small style="float: right;padding-right: 10px;">1</small>
+                    </h3>
+                    <div>
+                        <table class="table markers table-bordered">
+                            <tr>
+                                <th>Element</th>
+                                <th>Line</th>
+                                <th>Description</th>
+                            </tr>
+                                                                                <tr>
+                                    <td>\Payname\Payment\Payment::amount</td>
+                                    <td>119</td>
+                                    <td>Use Debit-&gt;amount instead</td>
+                                </tr>
+                                                                                                                                                <tr>
+                                    <td>\Payname\Payment\Payment::urssaf</td>
+                                    <td>127</td>
+                                    <td>Use Credit-&gt;amount for URSSAF credit instead</td>
+                                </tr>
+                                                                                                                                                <tr>
+                                    <td>\Payname\Payment\Payment::payname</td>
+                                    <td>135</td>
+                                    <td>Use Credit-&gt;amount for Payname credit instead</td>
+                                </tr>
+                                                                                                                                                <tr>
+                                    <td>\Payname\Payment\Payment::tax</td>
+                                    <td>143</td>
+                                    <td>Use Credit-&gt;amount for Marketplace credit instead</td>
+                                </tr>
+                                                                                                                                                <tr>
+                                    <td>\Payname\Payment\Payment::presentationDate</td>
+                                    <td>151</td>
+                                    <td>Use due_at instead</td>
+                                </tr>
+                                                                                                                                                <tr>
+                                    <td>\Payname\Payment\Payment::test_3DS</td>
+                                    <td>158</td>
+                                    <td>Use each Debit-&gt;test_3DS instead</td>
+                                </tr>
+                                                                                    </table>
                 </div>
             </div>
         </div>
@@ -151,7 +194,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 11th, 2015 at 16:05.
+                    on August 20th, 2015 at 18:56.
                 </section>
             </section>
         </section>

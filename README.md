@@ -16,6 +16,7 @@ SDK PHP pour l'API Payname
 - [Documentation](#documentation)
 - [Tests](#tests)
 - [Changements](#changements)
+    - [Build 5 - 2015 08 20](#build-5---2015-08-20)
     - [Build 4 - 2015 08 11](#build-4---2015-08-11)
     - [Build 3 - 2015 06 22](#build-3---2015-06-22)
     - [Build 2 - 2015 06 22](#build-2---2015-06-22)
@@ -76,6 +77,14 @@ Ils sont en cours d'implémentation.
 
 
 # Changements
+
+## Build 5 - 2015 08 20
+
+* Amélioration classe `Payment` pour supporter les nouvelles fonctionnalités de l'API :
+  * Ajout support de la nouvelle structure de paiements
+  * Ajout nouvelles classes `Debit` et `Credit`
+* Ajout examples de CRUD pour `Payment`, `Debit` et `Credit` dans les fichiers `examples/*_crud.php`
+
 
 ## Build 4 - 2015 08 11
 

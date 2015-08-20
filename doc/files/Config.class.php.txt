@@ -18,7 +18,7 @@ class Config {
      * Shop ID
      * @var  string
      */
-    const ID = 'R3cWX';
+    const ID = 'SHOP';
 
 
     /**
@@ -27,8 +27,9 @@ class Config {
      * Will be used as auth token on simple auth mode
      * @var  string
      */
-    //const SECRET = 'WD16NlQEKTUX5EEbFFzQPUZpQxIkKEz3'; // DEV
-    const SECRET = '6L8rkANaLtecpu0oX7dmxYwG6cenDdnr'; // PROD
+    const SECRET = 'secret_test'; // DEV
+    // const SECRET = 'secret'; // PROD
+
 
     /**
      * API host
