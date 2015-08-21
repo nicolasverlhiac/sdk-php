@@ -105,6 +105,17 @@ class Payment {
     public $confirmation = '';
 
 
+    /**
+     * Option : URSSAF
+     *
+     * Enables / Disables URSSAF management
+     *
+     * @link  http://api.payname.fr/documentation/#/how_to/sap
+     *
+     * @var boolean
+     */
+    public $option_urssaf = false;
+
 
 
     // -------------------------------------------------------------------------
