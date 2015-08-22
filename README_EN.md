@@ -1,4 +1,5 @@
 # SDK PHP
+
 SDK PHP for Payname API
 
 [Version française](./README.md)
@@ -15,6 +16,7 @@ SDK PHP for Payname API
 - [Documentation](#documentation)
 - [Tests](#tests)
 - [Changelog](#changelog)
+    - [Build 6 - 2015 08 21](#build-6---2015-08-21)
     - [Build 5 - 2015 08 20](#build-5---2015-08-20)
     - [Build 4 - 2015 08 11](#build-4---2015-08-11)
     - [Build 3 - 2015 06 22](#build-3---2015-06-22)
@@ -76,6 +78,13 @@ For now, work is still in progress.
 
 
 # Changelog
+
+## Build 6 - 2015 08 21
+
+* `Payment`: Added support of URSSAF option
+* `Popup` : Added two optional params `callback_ok` and `callback_cancel`  
+  If set, change the behavior of closing buttons: redirect to callback instead of closing the popup.
+
 
 ## Build 5 - 2015 08 20
 
